@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/text_margin"
-            android:text="Death Star Ventilation  Design Meeting (recurring)"
+            android:text="Death Star Ventilation Design Meeting (recurring)"
             android:textSize="24sp"
             android:textStyle="bold" />
 
