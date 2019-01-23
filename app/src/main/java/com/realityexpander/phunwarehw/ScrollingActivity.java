@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -25,24 +27,47 @@ public class ScrollingActivity extends AppCompatActivity {
     setContentView(R.layout.activity_scrolling);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     final ImageView poster = (ImageView) findViewById(R.id.poster);
+
+    TextView dateTextView = findViewById(R.id.date);
+    TextView titleTextView = findViewById(R.id.title);
+    TextView descriptionTextView = findViewById(R.id.description);
+
     setSupportActionBar(toolbar);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     setTitle("");
 
     getIntent().getSerializableExtra("starEvent");
     Intent i = getIntent();
     final MainActivity.StarEvent thisStarEvent = (MainActivity.StarEvent) i.getSerializableExtra("starEvent");
 
+//    Picasso.get()
+//            .load(thisStarEvent.getThumbnailUrl())
+//            .placeholder(R.drawable.placeholder_nomoon)
+//            .into(poster);
+
+    // Load Image Caches
     Picasso.get()
             .load(thisStarEvent.getThumbnailUrl())
             .placeholder(R.drawable.placeholder_nomoon)
-            .into(poster);
+            .networkPolicy(NetworkPolicy.OFFLINE)
+            .into(poster, new Callback() {
+              @Override
+              public void onSuccess() {
 
-    TextView dateTextView = findViewById(R.id.date);
-    TextView titleTextView = findViewById(R.id.title);
-    TextView descriptionTextView = findViewById(R.id.description);
+              }
 
+              @Override
+              public void onError(Exception e) {
+                // Try again online if cache failed
+                Picasso.get()
+                        .load(thisStarEvent.getThumbnailUrl())
+                        .placeholder(R.drawable.placeholder_nomoon)
+                        .error(R.drawable.placeholder)
+                        .into(poster);
+              }
+            });
+
+    // Format date
     try {
       Date d = parse(thisStarEvent.getDate());
       SimpleDateFormat spf= new SimpleDateFormat("MMM d, yyyy 'at' HH:MM", new Locale("en", "US"));
@@ -56,8 +81,7 @@ public class ScrollingActivity extends AppCompatActivity {
     titleTextView.setText(thisStarEvent.getTitle());
     descriptionTextView.setText(thisStarEvent.getDescription());
 
-
-
+    // Call Phone
     ImageView phoneImageView = findViewById(R.id.phone1);
     phoneImageView.setOnClickListener( new View.OnClickListener() {
       public void onClick(View v) {
@@ -71,6 +95,7 @@ public class ScrollingActivity extends AppCompatActivity {
       }
     });
 
+    // Share
     ImageView shareImageView = findViewById(R.id.share);
     shareImageView.setOnClickListener( new View.OnClickListener() {
       public void onClick(View v) {
@@ -86,6 +111,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
   }
 
+  // Parse the date String
   //      YYYY = four-digit year
   //      MM   = two-digit month (01=January, etc.)
   //      DD   = two-digit day of month (01 through 31)

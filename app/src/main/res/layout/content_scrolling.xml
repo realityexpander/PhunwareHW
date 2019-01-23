@@ -20,7 +20,7 @@
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginTop="10dp"
             android:text="May 4, 2018 at 4:14am"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/text_margin"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="18dp"
             android:text="@string/large_text" />
 
     </LinearLayout>
