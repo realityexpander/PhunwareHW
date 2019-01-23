@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                         .load(thisStarEvent.getThumbnailUrl())
                         .fit()
                         .transform(transformation)
-                        .networkPolicy(NetworkPolicy.OFFLINE)
+//                        .networkPolicy(NetworkPolicy.OFFLINE)
                         .into(thumbnailImageView);
 
             } else {
