@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_margin="15dp"
-    card_view:cardCornerRadius="8dp"
+    card_view:cardCornerRadius="5dp"
     card_view:cardElevation="4dp"
     card_view:cardBackgroundColor="#E9E9E9"
     card_view:contentPaddingLeft="5dp"
@@ -54,7 +54,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="-81dp"
             android:layout_toStartOf="@+id/thumbnail"
-            android:text="asdkjfn alsdkfjn asdkjfna sdfaklsjdnf adflakjsndfa"
+            android:text="This is a test of a long string of text to see how it breaks"
             android:textSize="18sp"
             android:textStyle="bold" />
 
