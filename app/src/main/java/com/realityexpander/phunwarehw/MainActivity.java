@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -24,10 +25,11 @@ public class MainActivity extends AppCompatActivity {
   ProgressBar myProgressBar;
   private ListViewAdapter adapter;
   private ListView mListView;
+//  private GridView mListView;
 
-  private void populateListView(List<StarEvent> spacecraftList) {
+  private void populateListView(List<StarEvent> starEventList) {
     mListView = findViewById(R.id.mListView);
-    adapter = new ListViewAdapter(this, spacecraftList);
+    adapter = new ListViewAdapter(this, starEventList);
     mListView.setAdapter(adapter);
   }
 
