@@ -38,7 +38,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
     getIntent().getSerializableExtra("starEvent");
     Intent i = getIntent();
-    final MainActivity.StarEvent thisStarEvent = (MainActivity.StarEvent) i.getSerializableExtra("starEvent");
+    final StarEvent thisStarEvent = (StarEvent) i.getSerializableExtra("starEvent");
 
     // Load Image Caches
     Picasso.get()
