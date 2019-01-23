@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
             TextView titleTextView = view.findViewById(R.id.title);
             TextView location1TextView = view.findViewById(R.id.location1);
             TextView descriptionTextView = view.findViewById(R.id.description);
-            ImageView thumbnailImageView = view.findViewById(R.id.thumbnail);
+            final ImageView thumbnailImageView = view.findViewById(R.id.thumbnail);
 
             final StarEvent thisStarEvent = starEvent.get(position);
 
@@ -193,16 +193,32 @@ public class MainActivity extends AppCompatActivity {
                         .oval(false)
                         .build();
 
+                // Load Image Caches
                 Picasso.get()
                         .load(thisStarEvent.getThumbnailUrl())
                         .fit()
                         .transform(transformation)
-//                        .networkPolicy(NetworkPolicy.OFFLINE)
-                        .into(thumbnailImageView);
+                        .networkPolicy(NetworkPolicy.OFFLINE)
+                        .into(thumbnailImageView, new com.squareup.picasso.Callback() {
+                          @Override
+                          public void onSuccess() {
+
+                          }
+
+                          @Override
+                          public void onError(Exception e) {
+                            // Try again online if cache failed
+                            Picasso.get()
+                                    .load(thisStarEvent.getThumbnailUrl())
+                                    .placeholder(R.drawable.placeholder_nomoon)
+                                    .error(R.drawable.placeholder_nomoon)
+                                    .into(thumbnailImageView);
+                          }
+                        });
 
             } else {
                 Toast.makeText(context, "Empty Image URL", Toast.LENGTH_LONG).show();
-                Picasso.get().load(R.drawable.placeholder).into(thumbnailImageView);
+                Picasso.get().load(R.drawable.placeholder_nomoon).into(thumbnailImageView);
             }
 
             view.setOnClickListener(new View.OnClickListener() {

@@ -28,8 +28,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/text_margin"
+            android:layout_marginRight="18dp"
             android:text="Death Star Ventilation Design Meeting (recurring)"
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
@@ -38,7 +39,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/text_margin"
             android:layout_marginTop="18dp"
-            android:text="@string/large_text" />
+            android:layout_marginRight="18dp"
+            android:text="@string/large_text"
+            android:textSize="18sp" />
 
     </LinearLayout>
 

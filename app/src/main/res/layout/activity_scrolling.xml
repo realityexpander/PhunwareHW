@@ -60,8 +60,8 @@
                 android:layout_margin="10dp"
                 android:clickable="true"
                 android:cropToPadding="true"
-                app:layout_collapseMode="pin"
-                android:src="@android:drawable/ic_menu_share" />
+                android:src="@android:drawable/ic_menu_share"
+                app:layout_collapseMode="pin" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>

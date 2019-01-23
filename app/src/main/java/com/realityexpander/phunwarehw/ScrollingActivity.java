@@ -40,15 +40,9 @@ public class ScrollingActivity extends AppCompatActivity {
     Intent i = getIntent();
     final MainActivity.StarEvent thisStarEvent = (MainActivity.StarEvent) i.getSerializableExtra("starEvent");
 
-//    Picasso.get()
-//            .load(thisStarEvent.getThumbnailUrl())
-//            .placeholder(R.drawable.placeholder_nomoon)
-//            .into(poster);
-
     // Load Image Caches
     Picasso.get()
             .load(thisStarEvent.getThumbnailUrl())
-            .placeholder(R.drawable.placeholder_nomoon)
             .networkPolicy(NetworkPolicy.OFFLINE)
             .into(poster, new Callback() {
               @Override
@@ -62,7 +56,7 @@ public class ScrollingActivity extends AppCompatActivity {
                 Picasso.get()
                         .load(thisStarEvent.getThumbnailUrl())
                         .placeholder(R.drawable.placeholder_nomoon)
-                        .error(R.drawable.placeholder)
+                        .error(R.drawable.placeholder_nomoon)
                         .into(poster);
               }
             });
@@ -70,7 +64,7 @@ public class ScrollingActivity extends AppCompatActivity {
     // Format date
     try {
       Date d = parse(thisStarEvent.getDate());
-      SimpleDateFormat spf= new SimpleDateFormat("MMM d, yyyy 'at' HH:MM", new Locale("en", "US"));
+      SimpleDateFormat spf= new SimpleDateFormat("MMM d, yyyy 'at' h:MM", new Locale("en", "US"));
       SimpleDateFormat spfa= new SimpleDateFormat("a", new Locale("en", "US"));
       String s = spf.format(d) + spfa.format(d).toLowerCase();
       dateTextView.setText( s );
