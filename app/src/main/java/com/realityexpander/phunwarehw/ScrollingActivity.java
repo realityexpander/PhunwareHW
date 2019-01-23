@@ -92,7 +92,7 @@ public class ScrollingActivity extends AppCompatActivity {
               }
             });
 
-    // Format date
+    // Format date to be: Sep 27, 2015 at 2:02am
     try {
       Date d = parse(thisStarEvent.getDate());
       SimpleDateFormat spf = new SimpleDateFormat("MMM d, yyyy 'at' h:MM", new Locale("en", "US"));
