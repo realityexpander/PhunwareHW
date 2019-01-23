@@ -75,6 +75,7 @@ public class ScrollingActivity extends AppCompatActivity {
     Picasso.get()
             .load(thisStarEvent.getThumbnailUrl())
             .networkPolicy(NetworkPolicy.OFFLINE)
+            .placeholder(R.drawable.placeholder_nomoon)
             .into(poster, new Callback() {
               @Override
               public void onSuccess() {
@@ -92,7 +93,7 @@ public class ScrollingActivity extends AppCompatActivity {
               }
             });
 
-    // Format date to be: Sep 27, 2015 at 2:02am
+    // Format date to be like: Sep 27, 2015 at 2:02am
     try {
       Date d = parse(thisStarEvent.getDate());
       SimpleDateFormat spf = new SimpleDateFormat("MMM d, yyyy 'at' h:MM", new Locale("en", "US"));

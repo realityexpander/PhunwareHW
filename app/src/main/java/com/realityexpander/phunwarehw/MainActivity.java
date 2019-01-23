@@ -24,14 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
   ProgressBar myProgressBar;
   private ListViewAdapter adapter;
-  private ListView mListView;
-//  private GridView mListView;
-
-  private void populateListView(List<StarEvent> starEventList) {
-    mListView = findViewById(R.id.mListView);
-    adapter = new ListViewAdapter(this, starEventList);
-    mListView.setAdapter(adapter);
-  }
+//  private ListView mListView;
+  private GridView mListView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
+  }
+
+  private void populateListView(List<StarEvent> starEventList) {
+    mListView = findViewById(R.id.mListView);
+    adapter = new ListViewAdapter(this, starEventList);
+    mListView.setAdapter(adapter);
   }
 
   @Override

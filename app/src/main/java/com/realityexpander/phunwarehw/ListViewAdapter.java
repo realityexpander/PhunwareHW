@@ -24,22 +24,23 @@ import java.util.List;
 
 class ListViewAdapter extends BaseAdapter {
 
-  private List<StarEvent> starEvent;
+  private List<StarEvent> starEvents;
   private Context context;
 
-  public ListViewAdapter(Context context, List<StarEvent> starEvent) {
+  public ListViewAdapter(Context context, List<StarEvent> starEvents) {
+//    super();
     this.context = context;
-    this.starEvent = starEvent;
+    this.starEvents = starEvents;
   }
 
   @Override
   public int getCount() {
-    return starEvent.size();
+    return starEvents.size();
   }
 
   @Override
   public Object getItem(int pos) {
-    return starEvent.get(pos);
+    return starEvents.get(pos);
   }
 
   @Override
@@ -59,13 +60,11 @@ class ListViewAdapter extends BaseAdapter {
     TextView shareTextView = view.findViewById(R.id.model_share);
     final ImageView thumbnailImageView = view.findViewById(R.id.thumbnail);
 
-    final StarEvent thisStarEvent = starEvent.get(position);
+    final StarEvent thisStarEvent = starEvents.get(position);
 
     titleTextView.setText(thisStarEvent.getTitle());
     location1TextView.setText(thisStarEvent.getLocationLine1());
-    String s = thisStarEvent.getDescription();
-    s = s.substring(0, Math.min(s.length(), 200)) + (s.length() > 200 ? "..." : "");
-    descriptionTextView.setText(s);
+    descriptionTextView.setText(thisStarEvent.getDescription());
 
     if (thisStarEvent.getThumbnailUrl() != null && thisStarEvent.getThumbnailUrl().length() > 0) {
       // Set the circular transformation
@@ -116,7 +115,7 @@ class ListViewAdapter extends BaseAdapter {
       @Override
       public void onClick(View view) {
         Intent intent = new Intent(context.getApplicationContext(), ScrollingActivity.class);
-        intent.putExtra("starEvent", thisStarEvent);
+        intent.putExtra("starEvents", thisStarEvent);
         context.startActivity(intent);
       }
     });
