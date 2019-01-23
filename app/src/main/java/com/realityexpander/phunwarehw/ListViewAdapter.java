@@ -27,7 +27,7 @@ class ListViewAdapter extends BaseAdapter {
   private List<StarEvent> starEvent;
   private Context context;
 
-  public ListViewAdapter(Context context,List<StarEvent> starEvent){
+  public ListViewAdapter(Context context, List<StarEvent> starEvent) {
     this.context = context;
     this.starEvent = starEvent;
   }
@@ -49,9 +49,8 @@ class ListViewAdapter extends BaseAdapter {
 
   @Override
   public View getView(int position, View view, ViewGroup viewGroup) {
-    if(view==null)
-    {
-      view= LayoutInflater.from(context).inflate(R.layout.model,viewGroup,false);
+    if (view == null) {
+      view = LayoutInflater.from(context).inflate(R.layout.model, viewGroup, false);
     }
 
     TextView titleTextView = view.findViewById(R.id.title);
@@ -65,11 +64,10 @@ class ListViewAdapter extends BaseAdapter {
     titleTextView.setText(thisStarEvent.getTitle());
     location1TextView.setText(thisStarEvent.getLocationLine1());
     String s = thisStarEvent.getDescription();
-    s = s.substring(0, Math.min(s.length(), 200)) + (s.length()>200 ? "..." : "");
+    s = s.substring(0, Math.min(s.length(), 200)) + (s.length() > 200 ? "..." : "");
     descriptionTextView.setText(s);
 
-    if(thisStarEvent.getThumbnailUrl() != null && thisStarEvent.getThumbnailUrl().length()>0)
-    {
+    if (thisStarEvent.getThumbnailUrl() != null && thisStarEvent.getThumbnailUrl().length() > 0) {
       // Set the circular transformation
       final Transformation transformation = new RoundedTransformationBuilder()
               .borderColor(Color.GRAY)
@@ -117,7 +115,7 @@ class ListViewAdapter extends BaseAdapter {
     view.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Intent intent = new Intent(context.getApplicationContext(),ScrollingActivity.class);
+        Intent intent = new Intent(context.getApplicationContext(), ScrollingActivity.class);
         intent.putExtra("starEvent", thisStarEvent);
         context.startActivity(intent);
       }

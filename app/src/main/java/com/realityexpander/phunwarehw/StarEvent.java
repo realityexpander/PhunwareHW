@@ -51,49 +51,6 @@ public class StarEvent implements Serializable {
     this.phone = phone;
   }
 
-  /*
-   *GETTERS AND SETTERS
-   */
-  public String getTitle() {
-    return title;
-  }
-  public void setTitle(String name) {
-    this.title = name;
-  }
-
-  public String getThumbnailUrl() {
-    return image;
-  }
-  public void setThumbnailUrl(String image) {
-    this.image = image;
-  }
-
-  public String getTimeStamp() { return timeStamp;	}
-  public void setTimeStamp(String timeStamp) { this.timeStamp = timeStamp;	}
-
-  public String getDate() {	return date;	}
-  public void setDate(String date) { this.date = date;	}
-
-  public String getLocationLine1() { return locationLine1;	}
-  public void setLocationLine1(String locationLine1) { this.locationLine1 = locationLine1;	}
-
-  public String getLocationLine2() { return locationLine2;	}
-  public void setLocationLine2(String locationLine2) { this.locationLine2 = locationLine2;	}
-
-  public String getDescription() { return description;	}
-  public void setDescription(String description) { this.description = description;	}
-
-  public String getPhone() { return phone;  }
-  public void setPhone(String phone) { this.phone = phone;  }
-
-  /*
-  TOSTRING
-   */
-  @Override
-  public String toString() {
-    return title;
-  }
-
   public static void shareIntent(Context context, StarEvent thisStarEvent) {
     Intent share = new Intent(Intent.ACTION_SEND);
     share.setType("text/plain");
@@ -102,5 +59,80 @@ public class StarEvent implements Serializable {
     share.putExtra(Intent.EXTRA_PHONE_NUMBER, thisStarEvent.getPhone());
     share.putExtra(Intent.EXTRA_TITLE, thisStarEvent.getLocationLine2());
     context.startActivity(Intent.createChooser(share, "Share Event"));
+  }
+
+  /*
+   *GETTERS AND SETTERS
+   */
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String name) {
+    this.title = name;
+  }
+
+  public String getThumbnailUrl() {
+    return image;
+  }
+
+  public void setThumbnailUrl(String image) {
+    this.image = image;
+  }
+
+  public String getTimeStamp() {
+    return timeStamp;
+  }
+
+  public void setTimeStamp(String timeStamp) {
+    this.timeStamp = timeStamp;
+  }
+
+  public String getDate() {
+    return date;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
+  }
+
+  public String getLocationLine1() {
+    return locationLine1;
+  }
+
+  public void setLocationLine1(String locationLine1) {
+    this.locationLine1 = locationLine1;
+  }
+
+  public String getLocationLine2() {
+    return locationLine2;
+  }
+
+  public void setLocationLine2(String locationLine2) {
+    this.locationLine2 = locationLine2;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
+  /*
+  TOSTRING
+   */
+  @Override
+  public String toString() {
+    return title;
   }
 }
