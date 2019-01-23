@@ -39,6 +39,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="-81dp"
             android:layout_toStartOf="@+id/thumbnail"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="24sp"
             android:textStyle="bold"
             tools:text="@tools:sample/full_names" />
@@ -55,6 +56,7 @@
             android:layout_marginEnd="-81dp"
             android:layout_toStartOf="@+id/thumbnail"
             android:text="This is a test of a long string of text to see how it breaks"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -89,6 +91,7 @@
             android:clickable="true"
             android:text="Share"
             android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimary"
             android:textSize="18dp"
             android:textStyle="bold" />
 

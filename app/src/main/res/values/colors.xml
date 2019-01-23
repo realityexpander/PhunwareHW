@@ -7,7 +7,7 @@
     <color name="colorPrimary">#050505</color>
     <!--<color name="colorPrimaryDark">#125688</color>-->
 
-    <color name="colorPrimaryDark">#FEFEFE</color>
+    <color name="colorPrimaryDark">#010101</color>
     <color name="textColorPrimary">#FFFFFF</color>
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
