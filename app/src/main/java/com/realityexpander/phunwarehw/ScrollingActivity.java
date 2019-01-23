@@ -1,6 +1,7 @@
 package com.realityexpander.phunwarehw;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,8 +14,8 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class ScrollingActivity extends AppCompatActivity {
 
@@ -43,7 +44,11 @@ public class ScrollingActivity extends AppCompatActivity {
     TextView descriptionTextView = findViewById(R.id.description);
 
     try {
-      dateTextView.setText( parse(thisStarEvent.getDate()).toString() );
+      Date d = parse(thisStarEvent.getDate());
+      SimpleDateFormat spf= new SimpleDateFormat("MMM d, yyyy 'at' HH:MM", new Locale("en", "US"));
+      SimpleDateFormat spfa= new SimpleDateFormat("a", new Locale("en", "US"));
+      String s = spf.format(d) + spfa.format(d).toLowerCase();
+      dateTextView.setText( s );
     } catch (ParseException e) {
       e.printStackTrace();
       dateTextView.setText(thisStarEvent.getDate());
@@ -71,7 +76,6 @@ public class ScrollingActivity extends AppCompatActivity {
       public void onClick(View v) {
         Intent share = new Intent(android.content.Intent.ACTION_SEND);
         share.setType("text/plain");
-        share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         share.putExtra(Intent.EXTRA_SUBJECT, thisStarEvent.getTitle());
         share.putExtra(Intent.EXTRA_TEXT, thisStarEvent.getDescription());
         share.putExtra(Intent.EXTRA_PHONE_NUMBER, thisStarEvent.getPhone());
