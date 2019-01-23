@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -61,6 +62,14 @@ public class MainActivity extends AppCompatActivity {
     mListView = findViewById(R.id.mListView);
     adapter = new ListViewAdapter(this, starEventList);
     mListView.setAdapter(adapter);
+
+    mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+      public void onItemClick(AdapterView<?> parent, View v,
+                              int position, long id) {
+        Toast.makeText(getApplicationContext(), "" + position,
+                Toast.LENGTH_SHORT).show();
+      }
+    });
   }
 
   @Override

@@ -67,9 +67,9 @@ public class ScrollingActivity extends AppCompatActivity {
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     setTitle("");
 
-    getIntent().getSerializableExtra("starEvent");
     Intent i = getIntent();
-    final StarEvent thisStarEvent = (StarEvent) i.getSerializableExtra("starEvent");
+    Bundle bundle = i.getExtras();
+    final StarEvent thisStarEvent = (StarEvent) i.getSerializableExtra("starEvents");
 
     // Load Image Caches
     Picasso.get()
