@@ -57,6 +57,7 @@ class ListViewAdapter extends BaseAdapter {
     TextView titleTextView = view.findViewById(R.id.title);
     TextView location1TextView = view.findViewById(R.id.location1);
     TextView descriptionTextView = view.findViewById(R.id.description);
+    TextView shareTextView = view.findViewById(R.id.model_share);
     final ImageView thumbnailImageView = view.findViewById(R.id.thumbnail);
 
     final StarEvent thisStarEvent = starEvent.get(position);
@@ -69,8 +70,8 @@ class ListViewAdapter extends BaseAdapter {
 
     if(thisStarEvent.getThumbnailUrl() != null && thisStarEvent.getThumbnailUrl().length()>0)
     {
-      // Picasso.get().load(thisStarEvent.getImageURL()).placeholder(R.drawable.placeholder).into(thumbnailImageView);
-      Transformation transformation = new RoundedTransformationBuilder()
+      // Set the circular transformation
+      final Transformation transformation = new RoundedTransformationBuilder()
               .borderColor(Color.GRAY)
               .borderWidthDp(3)
               .cornerRadiusDp(100)
@@ -105,17 +106,25 @@ class ListViewAdapter extends BaseAdapter {
       Picasso.get().load(R.drawable.placeholder_nomoon).into(thumbnailImageView);
     }
 
+    shareTextView.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        // Toast.makeText(context, thisStarEvent.getTitle(), Toast.LENGTH_SHORT).show();
+        StarEvent.shareIntent(context, thisStarEvent);
+      }
+    });
+
     view.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        //Toast.makeText(context, thisStarEvent.getTitle(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context.getApplicationContext(),ScrollingActivity.class);
         intent.putExtra("starEvent", thisStarEvent);
         context.startActivity(intent);
-
       }
     });
 
     return view;
   }
+
+
 }

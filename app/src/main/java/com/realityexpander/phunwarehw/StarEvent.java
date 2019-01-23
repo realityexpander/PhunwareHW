@@ -1,5 +1,8 @@
 package com.realityexpander.phunwarehw;
 
+import android.content.Context;
+import android.content.Intent;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -89,5 +92,15 @@ public class StarEvent implements Serializable {
   @Override
   public String toString() {
     return title;
+  }
+
+  public static void shareIntent(Context context, StarEvent thisStarEvent) {
+    Intent share = new Intent(Intent.ACTION_SEND);
+    share.setType("text/plain");
+    share.putExtra(Intent.EXTRA_SUBJECT, thisStarEvent.getTitle());
+    share.putExtra(Intent.EXTRA_TEXT, thisStarEvent.getDescription());
+    share.putExtra(Intent.EXTRA_PHONE_NUMBER, thisStarEvent.getPhone());
+    share.putExtra(Intent.EXTRA_TITLE, thisStarEvent.getLocationLine2());
+    context.startActivity(Intent.createChooser(share, "Share Event"));
   }
 }

@@ -75,7 +75,7 @@ public class ScrollingActivity extends AppCompatActivity {
     titleTextView.setText(thisStarEvent.getTitle());
     descriptionTextView.setText(thisStarEvent.getDescription());
 
-    // Call Phone
+    // Call Phone Intent
     ImageView phoneImageView = findViewById(R.id.phone1);
     phoneImageView.setOnClickListener( new View.OnClickListener() {
       public void onClick(View v) {
@@ -89,17 +89,11 @@ public class ScrollingActivity extends AppCompatActivity {
       }
     });
 
-    // Share
+    // Share Intent
     ImageView shareImageView = findViewById(R.id.share);
     shareImageView.setOnClickListener( new View.OnClickListener() {
       public void onClick(View v) {
-        Intent share = new Intent(android.content.Intent.ACTION_SEND);
-        share.setType("text/plain");
-        share.putExtra(Intent.EXTRA_SUBJECT, thisStarEvent.getTitle());
-        share.putExtra(Intent.EXTRA_TEXT, thisStarEvent.getDescription());
-        share.putExtra(Intent.EXTRA_PHONE_NUMBER, thisStarEvent.getPhone());
-        share.putExtra(Intent.EXTRA_TITLE, thisStarEvent.getLocationLine2());
-        startActivity(Intent.createChooser(share, "Share Event"));
+        StarEvent.shareIntent(getApplicationContext(), thisStarEvent);
       }
     });
 
