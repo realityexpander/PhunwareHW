@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <ProgressBar
-        android:id="@+id/myProgressBar"
+        android:id="@+id/mProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
