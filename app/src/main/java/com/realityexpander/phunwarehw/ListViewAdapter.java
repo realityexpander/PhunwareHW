@@ -1,17 +1,13 @@
 package com.realityexpander.phunwarehw;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,7 +18,6 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -66,9 +61,6 @@ class ListViewAdapter extends BaseAdapter {
     TextView descriptionTextView = view.findViewById(R.id.description);
     TextView shareTextView = view.findViewById(R.id.model_share);
     final ImageView thumbnailImageView = view.findViewById(R.id.thumbnail);
-
-    final View statusBar = view.findViewById(android.R.id.statusBarBackground);
-    final View navigationBar = view.findViewById(android.R.id.navigationBarBackground);
 
     final StarEvent thisStarEvent = starEvents.get(position);
 
@@ -125,24 +117,9 @@ class ListViewAdapter extends BaseAdapter {
       public void onClick(View view) {
         Intent intent = new Intent(context.getApplicationContext(), ScrollingActivity.class);
         intent.putExtra("starEvents", thisStarEvent);
-        Bundle options = ActivityOptionsCompat.makeSceneTransitionAnimation((Activity) context, (View)thumbnailImageView, "poster")
-                .toBundle();
-
-        // Check if we can attempt to reduce flicker
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-          List<Pair<View, String>> pairs = new ArrayList<>();
-          if (statusBar != null) {
-            pairs.add(Pair.create(statusBar, Window.STATUS_BAR_BACKGROUND_TRANSITION_NAME));
-          }
-          if (navigationBar != null) {
-            pairs.add(Pair.create(navigationBar, Window.NAVIGATION_BAR_BACKGROUND_TRANSITION_NAME));
-          }
-          pairs.add(Pair.create((View)thumbnailImageView, "poster"));
-          options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
-                  pairs.toArray(new Pair[pairs.size()])).toBundle();
-        }
-
-        context.startActivity(intent, options);
+        ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation((Activity) context, (View)thumbnailImageView, "poster");
+        context.startActivity(intent, options.toBundle());
       }
     });
 
@@ -151,8 +128,3 @@ class ListViewAdapter extends BaseAdapter {
 
 
 }
-
-
-
-
-
