@@ -12,6 +12,8 @@ Areas of challenge:
    could get it completely dialed-in given a bit more time and effort. The spec did not go into deep detail on this point.
 * The debugger sometimes quits for no reason. Had to restart it many times.
 * Managing various version of libraries.
+* Really want to create a custom transition to keep the circular reveal effect, but it looks at first glance that would
+  require several hours of work... maybe 2.0?
 * Various little gotchas normal to Android app development.
 
 I like working with retrofit and picasso. BUT there must be a better way to do transitions...
