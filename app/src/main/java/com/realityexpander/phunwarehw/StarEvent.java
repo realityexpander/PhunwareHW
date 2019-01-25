@@ -67,7 +67,6 @@ public class StarEvent implements Serializable {
   public String getTitle() {
     return title;
   }
-
   public void setTitle(String name) {
     this.title = name;
   }
@@ -75,7 +74,6 @@ public class StarEvent implements Serializable {
   public String getThumbnailUrl() {
     return image;
   }
-
   public void setThumbnailUrl(String image) {
     this.image = image;
   }
@@ -83,7 +81,6 @@ public class StarEvent implements Serializable {
   public String getTimeStamp() {
     return timeStamp;
   }
-
   public void setTimeStamp(String timeStamp) {
     this.timeStamp = timeStamp;
   }
@@ -91,7 +88,6 @@ public class StarEvent implements Serializable {
   public String getDate() {
     return date;
   }
-
   public void setDate(String date) {
     this.date = date;
   }
@@ -99,7 +95,6 @@ public class StarEvent implements Serializable {
   public String getLocationLine1() {
     return locationLine1;
   }
-
   public void setLocationLine1(String locationLine1) {
     this.locationLine1 = locationLine1;
   }
@@ -107,7 +102,6 @@ public class StarEvent implements Serializable {
   public String getLocationLine2() {
     return locationLine2;
   }
-
   public void setLocationLine2(String locationLine2) {
     this.locationLine2 = locationLine2;
   }
@@ -115,7 +109,6 @@ public class StarEvent implements Serializable {
   public String getDescription() {
     return description;
   }
-
   public void setDescription(String description) {
     this.description = description;
   }
@@ -123,7 +116,6 @@ public class StarEvent implements Serializable {
   public String getPhone() {
     return phone;
   }
-
   public void setPhone(String phone) {
     this.phone = phone;
   }
