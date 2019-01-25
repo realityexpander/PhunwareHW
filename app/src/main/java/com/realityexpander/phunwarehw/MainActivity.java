@@ -3,6 +3,7 @@ package com.realityexpander.phunwarehw;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -31,8 +32,6 @@ import retrofit2.http.GET;
 
 public class MainActivity extends AppCompatActivity {
 
-  private ListViewAdapter adapter;
-
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -44,10 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Create the RetrofitInstance interface
     phunAPIService myAPIService = RetrofitClientInstance.getRetrofitInstance().create(phunAPIService.class);
-
     Call<List<StarEvent>> call = myAPIService.getStarEvents();
     call.enqueue(new Callback<List<StarEvent>>() {
-
       @Override
       public void onResponse(Call<List<StarEvent>> call, Response<List<StarEvent>> response) {
         mProgressBar.setVisibility(View.GONE);
@@ -61,11 +58,13 @@ public class MainActivity extends AppCompatActivity {
       }
     });
 
+
+
   }
 
   private void populateListView(List<StarEvent> starEventList) {
     GridView listView = findViewById(R.id.mListView);
-    adapter = new ListViewAdapter(this, starEventList);
+    ListViewAdapter adapter = new ListViewAdapter(this, starEventList);
     listView.setAdapter(adapter);
 
     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

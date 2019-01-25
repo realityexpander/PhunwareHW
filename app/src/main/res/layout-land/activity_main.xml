@@ -21,14 +21,14 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:background="#FFFFFF"
-        android:columnWidth="100dp"
+        android:columnWidth="410dp"
         android:gravity="center"
         android:horizontalSpacing="20dp"
         android:numColumns="2"
-        android:stretchMode="columnWidth"
+        android:stretchMode="spacingWidthUniform"
         android:verticalSpacing="20dp"
 
         />
