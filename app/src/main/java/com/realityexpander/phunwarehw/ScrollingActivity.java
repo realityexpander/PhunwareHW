@@ -138,8 +138,9 @@ public class ScrollingActivity extends AppCompatActivity {
             sharedElement.getViewTreeObserver().removeOnPreDrawListener(this);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
               startPostponedEnterTransition();
+            } else {
+              supportStartPostponedEnterTransition();
             }
-            supportStartPostponedEnterTransition();
             return true;
           }
         });

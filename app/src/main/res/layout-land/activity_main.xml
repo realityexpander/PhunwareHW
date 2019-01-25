@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="#FFFFFF">
+    >
 
     <ProgressBar
         android:id="@+id/mProgressBar"

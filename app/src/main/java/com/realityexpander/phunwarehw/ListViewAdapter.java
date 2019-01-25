@@ -30,7 +30,7 @@ class ListViewAdapter extends BaseAdapter {
   private Context context;
 
   public ListViewAdapter(Context context, List<StarEvent> starEvents) {
-//    super();
+    super();
     this.context = context;
     this.starEvents = starEvents;
   }

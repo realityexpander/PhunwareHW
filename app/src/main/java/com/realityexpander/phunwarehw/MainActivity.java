@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -71,14 +70,6 @@ public class MainActivity extends AppCompatActivity {
     GridView listView = findViewById(R.id.mListView);
     adapter = new ListViewAdapter(this, starEventList);
     listView.setAdapter(adapter);
-
-    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-      public void onItemClick(AdapterView<?> parent, View v,
-                              int position, long id) {
-        Toast.makeText(getApplicationContext(), "" + position,
-                Toast.LENGTH_SHORT).show();
-      }
-    });
   }
 
   @Override
@@ -139,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
     public okhttp3.Response intercept(Chain chain) throws IOException {
       okhttp3.Response originalResponse = chain.proceed(chain.request());
       if (isOnline()) {
-        int maxAge = 60 * 15; // cache is fresh only for 5 min
+        int maxAge = 60 * 15; // cache is fresh only for 15 min
         return originalResponse.newBuilder()
                 .header("Cache-Control", "public, max-age=" + maxAge)
                 .build();

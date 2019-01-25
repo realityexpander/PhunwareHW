@@ -92,7 +92,7 @@
             android:text="Share"
             android:textAlignment="textEnd"
             android:textColor="@color/colorPrimary"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
 
