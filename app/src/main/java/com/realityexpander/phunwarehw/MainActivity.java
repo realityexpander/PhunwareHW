@@ -29,6 +29,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 
 
+/**
+ * Created by Chris Athanas on 1/23/19.
+ */
+
 public class MainActivity extends AppCompatActivity {
 
   private ListViewAdapter adapter;
@@ -86,9 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.transition.
+    // Handle action bar item clicks here.
     int id = item.getItemId();
 
     //noinspection SimplifiableIfStatement
@@ -137,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
     public okhttp3.Response intercept(Chain chain) throws IOException {
       okhttp3.Response originalResponse = chain.proceed(chain.request());
       if (isOnline()) {
-        int maxAge = 60; // read from cache for 1 minute
+        int maxAge = 60 * 15; // cache is fresh only for 5 min
         return originalResponse.newBuilder()
                 .header("Cache-Control", "public, max-age=" + maxAge)
                 .build();
