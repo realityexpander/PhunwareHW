@@ -19,6 +19,7 @@
         <!-- Thumbnail Image -->
         <ImageView
             android:id="@+id/thumbnail"
+            android:transitionName="poster"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentStart="false"

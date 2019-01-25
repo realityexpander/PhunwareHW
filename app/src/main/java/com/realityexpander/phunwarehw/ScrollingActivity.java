@@ -1,12 +1,14 @@
 package com.realityexpander.phunwarehw;
 
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,7 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -34,7 +37,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
     //NOTE: SimpleDateFormat uses GMT[-+]hh:mm for the TZ which breaks
     //things a bit.  Before we go on we have to repair this.
-    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sssz");
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.sssz", Locale.US);
 
     //this is zero time so we need to add that TZ indicator for
     if (input.endsWith("Z")) {
@@ -68,7 +71,7 @@ public class ScrollingActivity extends AppCompatActivity {
     setTitle("");
 
     Intent i = getIntent();
-    Bundle bundle = i.getExtras();
+//    Bundle bundle = i.getExtras();
     final StarEvent thisStarEvent = (StarEvent) i.getSerializableExtra("starEvents");
 
     // Load Image Caches
@@ -79,7 +82,7 @@ public class ScrollingActivity extends AppCompatActivity {
             .into(poster, new Callback() {
               @Override
               public void onSuccess() {
-
+                scheduleStartPostponedTransition(poster);
               }
 
               @Override
@@ -90,8 +93,13 @@ public class ScrollingActivity extends AppCompatActivity {
                         .placeholder(R.drawable.placeholder_nomoon)
                         .error(R.drawable.placeholder_nomoon)
                         .into(poster);
+                scheduleStartPostponedTransition(poster);
               }
             });
+
+    // Only suspend for transition only if given valid image link
+    if (thisStarEvent.getThumbnailUrl() != null)
+      supportPostponeEnterTransition();
 
     // Format date to be like: Sep 27, 2015 at 2:02am
     try {
@@ -131,5 +139,44 @@ public class ScrollingActivity extends AppCompatActivity {
 
   }
 
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      // Respond to the action bar's Up/Home button
+      case android.R.id.home:
+        // Reverse the animation
+        supportFinishAfterTransition();
+        return true;
+    }
+    return super.onOptionsItemSelected(item);
+  }
+
+  /**
+   * Schedules the shared element transition to be started immediately
+   * after the shared element has been measured and laid out within the
+   * activity's view hierarchy. Some common places where it might make
+   * sense to call this method are:
+   *
+   * (1) Inside a Fragment's onCreateView() method (if the shared element
+   *     lives inside a Fragment hosted by the called Activity).
+   *
+   * (2) Inside a Picasso Callback object (if you need to wait for Picasso to
+   *     asynchronously load/scale a bitmap before the transition can begin).
+   **/
+  private void scheduleStartPostponedTransition(final View sharedElement) {
+    sharedElement.getViewTreeObserver().addOnPreDrawListener(
+        new ViewTreeObserver.OnPreDrawListener() {
+          @Override
+          public boolean onPreDraw() {
+            sharedElement.getViewTreeObserver().removeOnPreDrawListener(this);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+              startPostponedEnterTransition();
+            }
+            supportStartPostponedEnterTransition();
+            return true;
+          }
+        });
+  }
 
 }

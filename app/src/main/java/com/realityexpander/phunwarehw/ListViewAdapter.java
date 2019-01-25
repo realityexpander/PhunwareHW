@@ -1,8 +1,10 @@
 package com.realityexpander.phunwarehw;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,14 +101,13 @@ class ListViewAdapter extends BaseAdapter {
               });
 
     } else {
-      Toast.makeText(context, "Empty Image URL", Toast.LENGTH_LONG).show();
+      // Toast.makeText(context, "Empty Image URL", Toast.LENGTH_LONG).show();
       Picasso.get().load(R.drawable.placeholder_nomoon).into(thumbnailImageView);
     }
 
     shareTextView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        // Toast.makeText(context, thisStarEvent.getTitle(), Toast.LENGTH_SHORT).show();
         StarEvent.shareIntent(context, thisStarEvent);
       }
     });
@@ -116,7 +117,9 @@ class ListViewAdapter extends BaseAdapter {
       public void onClick(View view) {
         Intent intent = new Intent(context.getApplicationContext(), ScrollingActivity.class);
         intent.putExtra("starEvents", thisStarEvent);
-        context.startActivity(intent);
+        ActivityOptionsCompat options = ActivityOptionsCompat.
+                makeSceneTransitionAnimation((Activity) context, (View)thumbnailImageView, "poster");
+        context.startActivity(intent, options.toBundle());
       }
     });
 

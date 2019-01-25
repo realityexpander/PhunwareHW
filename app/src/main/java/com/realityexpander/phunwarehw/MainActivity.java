@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     mProgressBar.setIndeterminate(true);
     mProgressBar.setVisibility(View.VISIBLE);
 
-    /*Create handle for the RetrofitInstance interface*/
+    // Create the RetrofitInstance interface
     phunAPIService myAPIService = RetrofitClientInstance.getRetrofitInstance().create(phunAPIService.class);
 
     Call<List<StarEvent>> call = myAPIService.getStarEvents();
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
   public boolean onOptionsItemSelected(MenuItem item) {
     // Handle action bar item clicks here. The action bar will
     // automatically handle clicks on the Home/Up button, so long
-    // as you specify a parent activity in AndroidManifest.xml.
+    // as you specify a parent activity in AndroidManifest.transition.
     int id = item.getItemId();
 
     //noinspection SimplifiableIfStatement
